@@ -11,7 +11,7 @@ David Bombal's fork and personalized Keylogger
 # Installation
 
 - Install the pynput python library with :
-```bash pip3 install pynput``` 
+```pip3 install pynput``` 
 
 - Open the python file and wait for the victim to write something.
 
