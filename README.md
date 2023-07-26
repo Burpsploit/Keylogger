@@ -24,6 +24,6 @@ David Bombal's fork and personalized Keylogger
 
 - To Close the program just hit 'f8' and the log will be located to keylogs.txt.
 
-- If you need some stealth use the *.ps1* script to open the file, do not forget to change the *<YOUR-DIRECTORY>* in the file. 
+- If you need some stealth use the *.ps1* script to open the file, do not forget to change the "YOUR-DIRECTORY" in the file. 
 
 >DISCLAIMER : The Keylogger is for educational purposes ***ONLY*** and the writer has no responsibilities for any malicious use!
